@@ -9,21 +9,31 @@ namespace SampleMenus
             InitializeComponent();
 
             slider.Value = 0;
-            UpdateSliderLabel();
+            switchView.IsToggled = true;
+            renderLabels();
         }
 
         public void OnSliderChanged(object sender, ValueChangedEventArgs args)
         {
             if (sender == slider)
             {
-                UpdateSliderLabel();
+                renderLabels();
             }
         }
 
-        private void UpdateSliderLabel()
+        private void renderLabels()
         {
             sliderLabel.Text = $"Slider: {(int)slider.Value}";
         }
+
+        public void OnSwitchChanged(object sender, ToggledEventArgs args)
+        {
+            if (sender == switchView)
+            {
+                switchLabel.Text = $"Switch: {args.Value}";
+            }
+        }
+
     }
 
 }

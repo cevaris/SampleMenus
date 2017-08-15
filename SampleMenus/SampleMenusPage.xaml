@@ -6,6 +6,8 @@
     <StackLayout>
         <Label Text="Sample Menus" VerticalOptions="Center" HorizontalOptions="Center" />
         <Slider x:Name="slider" ValueChanged="OnSliderChanged" Maximum="100" />
-        <Label x:Name="sliderLabel" Text="slider" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label x:Name="sliderLabel" Text="slider" HorizontalOptions="Center" />
+        <Switch x:Name="switchView" Toggled="OnSwitchChanged" />
+        <Label x:Name="switchLabel" Text="switch" />
     </StackLayout>
 </ContentPage>
