@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using System;
 
 namespace SampleMenus
 {
@@ -8,22 +9,16 @@ namespace SampleMenus
         {
             InitializeComponent();
 
-            slider.Value = 0;
             switchView.IsToggled = true;
-            renderLabels();
+            render();
         }
 
         public void OnSliderChanged(object sender, ValueChangedEventArgs args)
         {
             if (sender == slider)
             {
-                renderLabels();
+                render();
             }
-        }
-
-        private void renderLabels()
-        {
-            sliderLabel.Text = $"Slider: {(int)slider.Value}";
         }
 
         public void OnSwitchChanged(object sender, ToggledEventArgs args)
@@ -31,6 +26,29 @@ namespace SampleMenus
             if (sender == switchView)
             {
                 switchLabel.Text = $"Switch: {args.Value}";
+            }
+        }
+
+        public void OnSpinnerBtnClick(object sender, EventArgs args)
+        {
+            if (sender == spinnerBtn)
+            {
+                spinner.IsRunning = !spinner.IsRunning;
+                render();
+            }
+        }
+
+        private void render()
+        {
+            sliderLabel.Text = $"Slider: {((int)slider.Value)}";
+
+            if (spinner.IsRunning)
+            {
+                spinnerBtn.Text = "Stop Spinner";
+            }
+            else
+            {
+                spinnerBtn.Text = "Start Spinner";
             }
         }
 
