@@ -1,13 +1,40 @@
 ﻿using Xamarin.Forms;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace SampleMenus
 {
+    class EmailViewModel
+    {
+        public EmailViewModel(string from, string to, string header, string body)
+        {
+            this.From = from;
+            this.To = to;
+            this.Header = header;
+            this.Body = body;
+        }
+        public string From { get; set; }
+        public string To { get; set; }
+        public string Header { get; set; }
+        public string Body { get; set; }
+        public string DisplayLabel { get { return $"{this.From} - {this.Header}"; } }        
+    }
+
     public partial class SampleMenusPage : ContentPage
     {
+
+        private ObservableCollection<EmailViewModel> Emails = new ObservableCollection<EmailViewModel>
+        {
+            new EmailViewModel("alice@example.com", "to@my.com", "hello moto", "this is a test"),
+            new EmailViewModel("bob@example.com", "toOther@google.com", "great news!!", "this is great news")
+        };
+
         public SampleMenusPage()
         {
             InitializeComponent();
+
+            itemListView.ItemsSource = Emails;
 
             switchView.IsToggled = true;
             render();
