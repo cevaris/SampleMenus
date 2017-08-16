@@ -38,9 +38,19 @@ namespace SampleMenus
             }
         }
 
+
+        public void OnTextChanged(object sender, TextChangedEventArgs args)
+        {
+            if (sender == entry)
+            {
+                entryLabel.Text = $"Entry: {args.NewTextValue}";
+            }
+        }
+
         private void render()
         {
             sliderLabel.Text = $"Slider: {((int)slider.Value)}";
+
 
             if (spinner.IsRunning)
             {
