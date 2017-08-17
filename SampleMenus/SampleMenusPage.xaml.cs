@@ -18,7 +18,19 @@ namespace SampleMenus
         public string To { get; set; }
         public string Header { get; set; }
         public string Body { get; set; }
-        public string DisplayLabel { get { return $"{this.From} - {this.Header}"; } }        
+        public string DisplayLabel { get { return $"{this.From} - {this.Header}"; } }
+    }
+
+    class ColorViewModel
+    {
+        public ColorViewModel(string name, Color value)
+        {
+            this.Name = name;
+            this.Value = value;
+        }
+
+        public Color Value { get; set; }
+        public string Name { get; set; }
     }
 
     public partial class SampleMenusPage : ContentPage
@@ -30,11 +42,25 @@ namespace SampleMenus
             new EmailViewModel("bob@example.com", "toOther@google.com", "great news!!", "this is great news")
         };
 
+        private ObservableCollection<ColorViewModel> Colors = new ObservableCollection<ColorViewModel>
+        {
+            new ColorViewModel("Red", Color.Red),
+            new ColorViewModel("Blue", Color.Blue),
+            new ColorViewModel("Yellow", Color.Yellow)
+        };
+
+
         public SampleMenusPage()
         {
             InitializeComponent();
 
             itemListView.ItemsSource = Emails;
+
+            foreach (ColorViewModel c in Colors)
+            {
+                picker.Items.Add(c.Name);
+            }
+
 
             switchView.IsToggled = true;
             render();
@@ -71,6 +97,19 @@ namespace SampleMenus
             if (sender == entry)
             {
                 entryLabel.Text = $"Entry: {args.NewTextValue}";
+            }
+        }
+
+        public void OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (sender == picker)
+            {
+                if (0 <= picker.SelectedIndex && picker.SelectedIndex <= Colors.Count)
+                {
+                    ColorViewModel color = Colors[picker.SelectedIndex];
+                    pickerLbl.TextColor = color.Value;
+                }
+
             }
         }
 
