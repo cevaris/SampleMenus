@@ -57,6 +57,10 @@ namespace SampleMenus
             InitializeComponent();
 
             switchView.IsToggled = true;
+            foreach (ColorViewModel c in Colors)
+            {
+                picker.Items.Add(c.Name);
+            }
             render();
         }
 
@@ -92,6 +96,7 @@ namespace SampleMenus
             else if (sender == progresssBarBtn)
             {
                 progressBar.Progress = 0;
+                progresssBarBtn.Text = "Restart";
                 launchProgressBar();
             }
             else if (sender == searchBar)
@@ -152,16 +157,11 @@ namespace SampleMenus
             }
 
             itemListView.ItemsSource = Emails;
-            foreach (ColorViewModel c in Colors)
-            {
-                picker.Items.Add(c.Name);
-            }
         }
 
         async void launchProgressBar()
         {
             await progressBar.ProgressTo(1, 5000, Easing.SinIn);
-            progresssBarBtn.Text = "Restart";
         }
 
     }

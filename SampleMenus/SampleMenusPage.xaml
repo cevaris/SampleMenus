@@ -15,7 +15,7 @@
                 HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
-                    <RowDefinition Height="60" />
+                    <RowDefinition Height="100" />
                     <RowDefinition Height="60" />
                     <RowDefinition Height="60" />
                     <RowDefinition Height="50" />
@@ -40,7 +40,7 @@
                         HorizontalOptions="Center" />
                 </StackLayout>
                 <StackLayout Grid.Row="0"
-                    Grid.Column="2">
+                    Grid.Column="2" >
                     <Stepper x:Name="stepper"
                         ValueChanged="OnValueChangedEvent"
                         Maximum="100"
@@ -77,11 +77,18 @@
                 </StackLayout>
                 <StackLayout Grid.Row="2"
                     Grid.Column="0"
-                    Grid.ColumnSpan="3">
+                    Grid.ColumnSpan="2">
                     <DatePicker VerticalOptions="CenterAndExpand"
                         Date="{x:Static sys:DateTime.Now}">
                         <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
                     </DatePicker>
+                </StackLayout>
+                <StackLayout Grid.Row="2"
+                    Grid.Column="2">
+                    <TimePicker x:Name="timePicker"
+                        VerticalOptions="CenterAndExpand"
+                        Time="{Binding Source={x:Static sys:DateTime.Now}, Path=TimeOfDay}"
+                        Format="HH:mm" />
                 </StackLayout>
                 <StackLayout Grid.Row="3"
                     Grid.Column="0"
