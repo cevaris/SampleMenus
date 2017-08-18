@@ -82,12 +82,17 @@ namespace SampleMenus
             }
         }
 
-        public void OnSpinnerBtnClick(object sender, EventArgs args)
+        public void OnButtonClick(object sender, EventArgs args)
         {
             if (sender == spinnerBtn)
             {
                 spinner.IsRunning = !spinner.IsRunning;
                 render();
+            }
+            else if (sender == progresssBarBtn)
+            {
+                progressBar.Progress = 0;
+                launchProgressBar();
             }
         }
 
@@ -126,6 +131,12 @@ namespace SampleMenus
             {
                 spinnerBtn.Text = "Start Spinner";
             }
+        }
+
+        async void launchProgressBar()
+        {
+            await progressBar.ProgressTo(1, 5000, Easing.SinIn);
+            progresssBarBtn.Text = "Restart";
         }
 
     }

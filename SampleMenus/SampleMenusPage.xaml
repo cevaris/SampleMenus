@@ -20,6 +20,7 @@
                     <RowDefinition Height="75" />
                     <RowDefinition Height="210" />
                     <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -51,7 +52,7 @@
                         IsRunning="true" />
                     <Button x:Name="spinnerBtn"
                         Text="Stop Spinner"
-                        Clicked="OnSpinnerBtnClick"
+                        Clicked="OnButtonClick"
                         BorderWidth="1">
                         <Button.FontSize>
                             <OnPlatform x:TypeArguments="x:Double"
@@ -116,6 +117,27 @@
                     Grid.Column="2">
                     <Label x:Name="pickerLbl"
                         Text="Color Value" />
+                </StackLayout>
+                <StackLayout Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    VerticalOptions="Center">
+                    <ProgressBar x:Name="progressBar"
+                        Progress="0.1" />
+                </StackLayout>
+                <StackLayout Grid.Row="6"
+                    Grid.Column="2"
+                    VerticalOptions="Center">
+                    <Button x:Name="progresssBarBtn"
+                        Text="Launch"
+                        Clicked="OnButtonClick"
+                        BorderWidth="1">
+                        <Button.FontSize>
+                            <OnPlatform x:TypeArguments="x:Double"
+                                iOS="17"
+                                Android="12" />
+                        </Button.FontSize>
+                    </Button>
                 </StackLayout>
             </Grid>
         </ScrollView>
