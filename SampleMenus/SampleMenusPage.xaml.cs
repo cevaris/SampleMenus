@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 
 namespace SampleMenus
 {
@@ -36,7 +38,8 @@ namespace SampleMenus
     public partial class SampleMenusPage : ContentPage
     {
 
-        private ObservableCollection<EmailViewModel> Emails = new ObservableCollection<EmailViewModel>
+        //private ObservableCollection<EmailViewModel> Emails = new ObservableCollection<EmailViewModel>
+        private List<EmailViewModel> Emails = new List<EmailViewModel>
         {
             new EmailViewModel("alice@example.com", "to@my.com", "hello moto", "this is a test"),
             new EmailViewModel("bob@example.com", "toOther@google.com", "great news!!", "this is great news")
@@ -94,6 +97,11 @@ namespace SampleMenus
                 progressBar.Progress = 0;
                 launchProgressBar();
             }
+            else if (sender == searchBar)
+            {
+                Debug.WriteLine(searchBar.Text);
+                itemListView.ItemsSource = Emails.Where(e => e.Header.ToLower().Trim().Contains(searchBar.Text.ToLower().Trim()));
+            }
         }
 
 
@@ -102,6 +110,19 @@ namespace SampleMenus
             if (sender == entry)
             {
                 entryLabel.Text = $"Entry: {args.NewTextValue}";
+            }
+            if (sender == searchBar)
+            {
+                if (string.IsNullOrWhiteSpace(args.NewTextValue))
+                {
+                    itemListView.ItemsSource = Emails;
+                }
+                else
+                {
+                    Debug.WriteLine(args.NewTextValue);
+                    itemListView.ItemsSource = Emails.Where(e => e.Header.ToLower().Trim().Contains(args.NewTextValue.ToLower().Trim()));
+                }
+
             }
         }
 
@@ -117,6 +138,7 @@ namespace SampleMenus
 
             }
         }
+
 
         private void render()
         {

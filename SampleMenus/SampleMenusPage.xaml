@@ -14,12 +14,13 @@
             <Grid VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="75" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
                     <RowDefinition Height="50" />
-                    <RowDefinition Height="100" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="210" />
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="120" />
+                    <RowDefinition Height="60" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -85,6 +86,15 @@
                 </StackLayout>
                 <StackLayout Grid.Row="4"
                     Grid.Column="0"
+                    Grid.ColumnSpan="3">
+                    <SearchBar x:Name="searchBar"
+                        Placeholder="Query Email"
+                        SearchButtonPressed="OnButtonClick"
+                        TextChanged="OnTextChanged"
+                    />
+                </StackLayout>
+                <StackLayout Grid.Row="5"
+                    Grid.Column="0"
                     Grid.ColumnSpan="3"
                     HorizontalOptions="CenterAndExpand">
                     <ListView x:Name="itemListView"
@@ -106,26 +116,26 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
-                <StackLayout Grid.Row="5"
+                <StackLayout Grid.Row="6"
                     Grid.Column="0"
                     Grid.ColumnSpan="2">
                     <Picker x:Name="picker"
                         Title="Select Picker Color"
                         SelectedIndexChanged="OnSelectedIndexChanged" />
                 </StackLayout>
-                <StackLayout Grid.Row="5"
+                <StackLayout Grid.Row="6"
                     Grid.Column="2">
                     <Label x:Name="pickerLbl"
                         Text="Color Value" />
                 </StackLayout>
-                <StackLayout Grid.Row="6"
+                <StackLayout Grid.Row="7"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     VerticalOptions="Center">
                     <ProgressBar x:Name="progressBar"
                         Progress="0.1" />
                 </StackLayout>
-                <StackLayout Grid.Row="6"
+                <StackLayout Grid.Row="7"
                     Grid.Column="2"
                     VerticalOptions="Center">
                     <Button x:Name="progresssBarBtn"
