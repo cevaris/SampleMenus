@@ -30,20 +30,28 @@
                 </Grid.ColumnDefinitions>
                 <StackLayout Grid.Row="0"
                     Grid.Column="0"
-                    Grid.ColumnSpan="3">
+                    Grid.ColumnSpan="2">
                     <Slider x:Name="slider"
-                        ValueChanged="OnSliderChanged"
+                        ValueChanged="OnValueChangedEvent"
                         Maximum="100"
                         Value="10" />
                     <Label x:Name="sliderLabel"
                         Text="slider"
                         HorizontalOptions="Center" />
                 </StackLayout>
+                <StackLayout Grid.Row="0"
+                    Grid.Column="2">
+                    <Stepper x:Name="stepper"
+                        ValueChanged="OnValueChangedEvent"
+                        Maximum="100"
+                        Minimum="0"
+                        Value="10" />
+                </StackLayout>
                 <StackLayout Grid.Row="1"
                     Grid.Column="0"
                     HorizontalOptions="StartAndExpand">
                     <Switch x:Name="switchView"
-                        Toggled="OnSwitchChanged" />
+                        Toggled="OnToggledEvent" />
                     <Label x:Name="switchLabel"
                         Text="switch" />
                 </StackLayout>
@@ -90,8 +98,7 @@
                     <SearchBar x:Name="searchBar"
                         Placeholder="Query Email"
                         SearchButtonPressed="OnButtonClick"
-                        TextChanged="OnTextChanged"
-                    />
+                        TextChanged="OnTextChanged" />
                 </StackLayout>
                 <StackLayout Grid.Row="5"
                     Grid.Column="0"
@@ -121,7 +128,7 @@
                     Grid.ColumnSpan="2">
                     <Picker x:Name="picker"
                         Title="Select Picker Color"
-                        SelectedIndexChanged="OnSelectedIndexChanged" />
+                        SelectedIndexChanged="OnPickerChanged" />
                 </StackLayout>
                 <StackLayout Grid.Row="6"
                     Grid.Column="2">

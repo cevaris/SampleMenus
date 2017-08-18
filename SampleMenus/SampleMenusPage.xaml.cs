@@ -38,14 +38,13 @@ namespace SampleMenus
     public partial class SampleMenusPage : ContentPage
     {
 
-        //private ObservableCollection<EmailViewModel> Emails = new ObservableCollection<EmailViewModel>
-        private List<EmailViewModel> Emails = new List<EmailViewModel>
+        private readonly List<EmailViewModel> Emails = new List<EmailViewModel>
         {
             new EmailViewModel("alice@example.com", "to@my.com", "hello moto", "this is a test"),
             new EmailViewModel("bob@example.com", "toOther@google.com", "great news!!", "this is great news")
         };
 
-        private ObservableCollection<ColorViewModel> Colors = new ObservableCollection<ColorViewModel>
+        private readonly List<ColorViewModel> Colors = new List<ColorViewModel>
         {
             new ColorViewModel("Red", Color.Red),
             new ColorViewModel("Blue", Color.Blue),
@@ -57,27 +56,25 @@ namespace SampleMenus
         {
             InitializeComponent();
 
-            itemListView.ItemsSource = Emails;
-
-            foreach (ColorViewModel c in Colors)
-            {
-                picker.Items.Add(c.Name);
-            }
-
-
             switchView.IsToggled = true;
             render();
         }
 
-        public void OnSliderChanged(object sender, ValueChangedEventArgs args)
+        public void OnValueChangedEvent(object sender, ValueChangedEventArgs args)
         {
             if (sender == slider)
             {
+                stepper.Value = args.NewValue;
                 render();
             }
+            if (sender == stepper)
+            {
+                slider.Value = args.NewValue;
+            }
+
         }
 
-        public void OnSwitchChanged(object sender, ToggledEventArgs args)
+        public void OnToggledEvent(object sender, ToggledEventArgs args)
         {
             if (sender == switchView)
             {
@@ -126,7 +123,7 @@ namespace SampleMenus
             }
         }
 
-        public void OnSelectedIndexChanged(object sender, EventArgs e)
+        public void OnPickerChanged(object sender, EventArgs e)
         {
             if (sender == picker)
             {
@@ -152,6 +149,12 @@ namespace SampleMenus
             else
             {
                 spinnerBtn.Text = "Start Spinner";
+            }
+
+            itemListView.ItemsSource = Emails;
+            foreach (ColorViewModel c in Colors)
+            {
+                picker.Items.Add(c.Name);
             }
         }
 
